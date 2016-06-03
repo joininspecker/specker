@@ -1,0 +1,31 @@
+body{
+  background-color:#36465d;
+  //color: hsla(0, 0%, 100%, .5);
+  color:#eee;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font: 13px Helvetica, Arial; }
+
+
+.form-control{
+  text-align: center;
+}
+
+
+button.btn.btn-primary{
+  background-color: #36465d;
+  border-color:#36465d;
+}
+
+.modal-header{
+  background-color:#36465d;
+}
+
+p{
+  color:#f8f8f8;
+}
+.navbar-inverse{
+  background-color: #36465d;
+  border-color: #36465d;
+  border-bottom:0.7px solid #f8f8f8;
+}

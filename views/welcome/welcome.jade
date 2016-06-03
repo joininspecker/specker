@@ -1,0 +1,145 @@
+extends ../layout
+
+block css
+  link(rel="stylesheet" type="text/css" href="../../fullPage/css/jquery.fullPage.css")
+  link(rel="stylesheet" type="text/css" href="../../fullPage/css/examples.css")
+  link(rel="stylesheet" type="text/css" href="../../loginForm/css/colors.css")
+  link(rel="stylesheet" type="text/css" href="../../loginForm/css/foundation.min.css")
+  link(rel="stylesheet" type="text/css" href="../../loginForm/css/main.css")
+  link(rel="stylesheet" type="text/css" href="welcome/welcome.css")
+  //- link(rel="stylesheet" type="text/css" href="../../nod/css/nod.css")
+  
+block scripts
+  script(src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js")
+  script(type="text/javascript" src="../../fullPage/js/jquery.slimscroll.js")
+  script(type="text/javascript" src="../../fullPage/js/jquery.fullPage.js")
+  script(type="text/javascript" src="../../fullPage/js/examples.js")
+  script(type="text/javascript" src="../../tagCloud/js/d3.js")
+  script(type="text/javascript" src="../../tagCloud/js/d3.layout.cloud.js")
+  script(type="text/javascript" src="../../tagCloud/js/tags.js")
+  script(type="text/javascript" src="welcome/welcome.js")
+  script(type="text/javascript" src="../../nod/js/nod.js")
+  script.
+    $(document).ready(function(){
+      //- var signUpNod = nod();
+      //- var signInNod = nod();
+      //- signUpNod.configure({
+      //-   submit: '#GoSignUp',
+      //-   disableSubmit: true
+      //- });
+      //- 
+      //- signUpNod.add([
+      //-   {
+      //-     selector: '#signUpEmail',
+      //-     validate: 'min-length:2',
+      //-     errorMessage: 'Your name must be at least two characters long.'
+      //-   }, 
+      //-   {
+      //-     selector: '#signUpEmail',
+      //-     validate: 'email',
+      //-     errorMessage: 'That doesn\'t look like it\'s a valid email address.'
+      //-   }
+      //- ]);
+    });
+  
+block content
+  div#header
+    div.navbar.navbar-inverse.navbar-fixed-top.transparent(style="z-index:4; position:fixed;" role="navigation")
+      div.container
+        div.navbar-header
+          a.navbar-brand(href="/") LOGO
+        div#buttonWrapper
+          form.navbar-form.navbar-right#upperSignInForm(role="form" style="display:none;")
+            a#upperSignInButton(href="#firstPage" style="text-decoration:none;") signIn
+          form.navbar-form.navbar-right#upperSignUpForm(role="form" style="display:none;")
+            a#upperSignUpButton(href="#firstPage" style="text-decoration:none;") signUp
+  div#fullpage
+    div.section#section0
+      div#myCarousel.carousel.slide
+        header
+          div.hgroup.vertical-center.row
+            div.carousel-inner(style="width:80%; margin-left:10%")
+              div.item.active.main
+                h1.small-12.small-centered.columns.txtWhite  안녕, 난 Specker야!
+                h2.small-12.small-centered.columns.txtWhite  어학, 자격증, 취업, 국가고시, 대학원, 편입 
+                div#wrapBtn.small-10.small-centered.medium-10.large-7.column.clearfix
+                  a.button.ghostBtn#signUpBtn.small-12.medium-5.large-5.columns(style="text-decoration:none" href="#projects" data-target="#myCarousel" data-slide-to="2") 회원가입
+                  a.button.colorBtn#signInBtn.small-12.medium-5.large-5.columns.end(style="text-decoration:none" href="#contact" data-target="#myCarousel" data-slide-to="1") 로그인
+              div.item#itemSignIn
+                h1.small-12.small-centered.columns.txtWhite  안녕, 난 로그인폼이야!
+                h2.small-12.small-centered.columns.txtWhite  어학, 자격증, 취업, 국가고시, 대학원, 편입 
+                div.small-6.small-centered.large-6.large-centered.columns.innerContent
+                  form#signInForm(data-abide="" name="signInForm" action="/signIn" method="post" novalidate="novalidate")
+                    div.row
+                      div.large-10.large-push-1.columns.error
+                        input#signInEmail.lginput(type="text" name="signInEmail" placeholder="Your E-mail *" required="" data-invalid="" aria-invalid="true" style="background: transparent; border: none; box-shadow: none; border-bottom: 2px solid #f8f8f8; margin-bottom: 40px;")
+                        //small.error Please fill in your name.
+                    div.row
+                      div.large-10.large-push-1.columns.error
+                        input#signInPassword.lginput(type="password" name="signInPassword" placeholder="Your Password *" required="" data-invalid="" aria-invalid="true" style="background: transparent; border: none; box-shadow: none; border-bottom: 2px solid #f8f8f8; margin-bottom: 40px;")
+                        //small.error  Enter a valid email address.
+                div#wrapBtn.small-10.small-centered.medium-10.large-7.large-centered.medium-centered.small-centered.column.clearfix
+                  a.button.colorBtn#GoSignIn.large-centered.medium-centered.small-centered.small-12.medium-5.large-5.columns.end(style="text-decoration:none") 로그인
+                    
+              div.item#itemSignUp
+                h1.small-12.small-centered.columns.txtWhite  안녕, 난 회원가입폼이야!
+                h2.small-12.small-centered.columns.txtWhite(style="margin-bottom:40px;")  어학, 자격증, 취업, 국가고시, 대학원, 편입 
+                div.small-6.small-centered.large-6.large-centered.columns
+                  form#signUpForm(data-abide="" name="signUpForm" action="/signUp" method="post" novalidate="novalidate")
+                    div.row
+                      div.large-10.large-push-1.columns.error
+                        input#signUpEmail.lginput(type="text" name="signUpEmail" placeholder="이메일" required="" data-invalid="" aria-invalid="true" style="background: transparent; border: none; box-shadow: none; border-bottom: 2px solid #f8f8f8; margin-bottom: 25px;")
+                        //small.error Please fill in your name.
+                    div.row
+                      div.large-10.large-push-1.columns.error
+                        input#signUpName.lginput(type="text" name="signUpName" placeholder="이름" required="" data-invalid="" aria-invalid="true" style="background: transparent; border: none; box-shadow: none; border-bottom: 2px solid #f8f8f8; margin-bottom: 25px;")
+                    div.row
+                      div.large-10.large-push-1.columns.error
+                        input#signUpPhone.lginput(type="text" name="signUpPhone" placeholder="핸드폰번호" required="" data-invalid="" aria-invalid="true" style="background: transparent; border: none; box-shadow: none; border-bottom: 2px solid #f8f8f8; margin-bottom: 25px;")
+                    div.row
+                      div.large-10.large-push-1.columns.error
+                        input#signUpPassword.lginput(type="password" name="signUpPassword" placeholder="비밀번호" required="" data-invalid="" aria-invalid="true" style="background: transparent; border: none; box-shadow: none; border-bottom: 2px solid #f8f8f8; margin-bottom: 25px;")
+                    div.row
+                      div.large-10.large-push-1.columns.error
+                        input#signUpPasswordConfirm.lginput(type="password" name="signUpPasswordConfirm" placeholder="비밀번호 확인" required="" data-invalid="" aria-invalid="true" style="background: transparent; border: none; box-shadow: none; border-bottom: 2px solid #f8f8f8; margin-bottom: 50px;")
+                div#wrapBtn.small-10.small-centered.medium-10.large-7.large-centered.medium-centered.small-centered.column.clearfix
+                  a.button.colorBtn#GoSignUp.large-centered.medium-centered.small-centered.small-12.medium-5.large-5.columns.end(style="text-decoration:none") 회원가입
+              div.item
+              div.item
+              div.item
+
+    div.section#section1
+      div.container
+        div.row
+          p good
+        div.row
+          div.col-sm-3.col-xs-6
+            div.counters
+              span.counter  7800 
+                h4.countExplain  채점 가능한 문제
+          div.col-sm-3.col-xs-6
+            div.counters
+              span.counter  7800 
+              h4.countExplain  채점 가능한 문제
+          div.col-sm-3.col-xs-6
+            div.counters
+              span.counter  7800 
+                h4.countExplain  채점 가능한 문제
+          div.col-sm-3.col-xs-6
+            div.counters
+              span.counter  7800 
+                h4.countExplain  채점 가능한 문제
+
+    div.section#section2
+      div#vis(style="")
+    div.section#section3
+      div.intro
+        h1  Keep it simple!
+        
+    div.section#section4
+      div.intro
+        div.layer
+          div.row
+            div.col-xs-
+              p specker
+  script(type="text/javascript" src="../tagCloud/js/word-cloud.js")

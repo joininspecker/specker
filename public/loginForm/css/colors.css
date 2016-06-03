@@ -1,0 +1,89 @@
+/* ----------------------------------------------------------------
+    Colors
+
+    Replace the HEX Code with your Desired Color HEX
+-----------------------------------------------------------------*/
+
+/* Turquoise Colored Elements */
+
+::-moz-selection { background: #1bbc9b; }
+
+::selection { background: #1bbc9b; }
+
+.object { background-color: #1bbc9b; } /*Page loader color*/
+
+.color,
+a:hover,
+a:focus,
+a:active,
+div.folioNav a:hover,
+div.folioNav a:focus,
+div.folioNav a:active,
+div.folioNav a.is-checked,
+.overlayMenu ul li a:hover,
+.overlayMenu ul li a:focus,
+label,
+.twitter-feed li span a { color: #1bbc9b; }
+
+.quote { background-color: #1bbc9b; }
+
+blockquote { border-left: 4px solid #1bbc9b; }
+
+.postWrapper:hover { border-left: 2px solid #1bbc9b; }
+
+#blog div[class^="icon-"] { background-color: #1bbc9b; }
+
+footer h4 { border-left: 6px solid #1bbc9b; }
+
+input[type="submit"] { background-color: #1bbc9b; }
+
+.colorBtn {
+	background-color: #1bbc9b;
+	border: 2px solid #1bbc9b;
+}
+
+.colorBtn:hover,
+.colorBtn:active,
+.colorBtn:focus {
+	background-color: #19ae8f;
+	border: 2px solid #19ae8f;
+}
+
+input[type="submit"]:focus,
+input[type="submit"]:hover {
+  	background-color: #19ae8f;
+}
+
+.small-iconCols span { background-color: #1bbc9b; }
+
+.iconCols > span[class^="icon-"],
+.outlined-iconCols >  span[class^="icon-"]{ background-color: #1bbc9b; }
+
+.no-touch .cd-top:hover { background-color: #1bbc9b; }
+
+.blogItem > span { background-color: #1bbc9b; }
+
+.tagCloud a:hover {
+	color: #1bbc9b;
+	border-color: #1bbc9b;
+}
+
+.shareBtns a:hover {
+  color: #fff;
+  background: #1bbc9b;
+}
+
+@media only screen and (min-width: 40.063em) {
+
+	.owl-theme .owl-controls .owl-buttons [class*="owl-"]:hover { color: #1bbc9b; }
+}
+
+@media only screen and (min-width: 64.063em) {
+
+	.topMenu .primaryMenu li a span::before { color: #1bbc9b; }
+
+	.bottomMenu .primaryMenu li a:hover,
+  	.bottomMenu .primaryMenu li a:active,
+  	.bottomMenu .primaryMenu li a:focus,
+  	.bottomMenu .primaryMenu li a.selected { background-color: #1bbc9b; }
+}

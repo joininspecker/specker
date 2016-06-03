@@ -1,0 +1,49 @@
+extends layout
+block css
+  style
+    include offcanvas.css
+block content
+  include navbar
+  div.container
+    br
+    br
+    br
+    div.row.row-offcanvas.row-offcanvas-left
+      div#sidebar.col-xs-6.col-sm-3.sidebar-offcanvas
+        div.list-group
+          a.list-group-item.active(href="#") type
+          a.list-group-item(href="#") 1
+          a.list-group-item(href="#") 2
+          a.list-group-item(href="#") 3
+          a.list-group-item(href="#") 4
+          a.list-group-item(href="#") 5
+          a.list-group-item(href="#") 6
+          a.list-group-item(href="#") 7
+      div.col-xs-12.col-sm-9
+        div.jumbotron
+          div.row
+            p.pull-left.visible-xs
+              button.btn.btn-primary.btn-xs(data-toggle="offcanvas" type="button") menu
+          div.row
+            p.h1 board_info
+            p.h5 hello, it's board
+            br
+            br
+        br
+        div.row
+          - var list = ["0", "a", "b", "c", "d", "e", "f", "g", "h"];
+          - for(var i=1; i<7; i++)
+              form(id='board_form_'+i method='post' action='/board')
+                div.col-xs-6.col-sm-4(style='border:1px solid')
+                  input(type='hidden' name='board_input_'+i value=i)
+                  p(class='h2')= list[i]
+                  br
+                  p description...
+                  input.btn(type='submit' value='go '+i)
+                  br
+          script.
+            $(document).ready(function () {
+              $('[data-toggle="offcanvas"]').click(function(){
+                $('.row-offcanvas').toggleClass('active')
+              });
+            });

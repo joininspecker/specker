@@ -1,0 +1,114 @@
+extends ../layout
+
+block css
+  link(rel="stylesheet" type="text/css" href="../../metro-bootstrap/dist/css/metro-bootstrap.css")
+  link(rel="stylesheet" type="text/css" href="../../magicSuggest/css/magicsuggest.css")
+  link(rel="stylesheet" type="text/css" href="/classification/classification.css")
+  style.
+    .col-lg-10{
+      border-right:1px solid #f8f8f8;
+    }
+    #contents{
+      padding-top:80px;
+    }
+    body{
+      background-color:#36465d;
+    }
+    .form-control{
+      text-align: center;
+    }
+
+
+    button.btn.btn-primary{
+      background-color: #36465d;
+      border-color:#36465d;
+    }
+
+    .modal-header{
+      background-color:#36465d;
+    }
+
+    p{
+      color:#f8f8f8;
+    }
+    .navbar-inverse{
+      background-color: #36465d;
+      border-color: #36465d;
+      border-bottom:0.7px solid #f8f8f8;
+    }
+    #searchForm{
+      padding-top:15px; 
+      margin-bottom:0px;
+      
+    }
+    #next{
+      margin-top:11px; 
+      font-size:35px; 
+      color:#cccccc
+    }
+    #next:hover{
+      background-color:#36465d;
+      color:#f8f8f8;
+    }
+    .ms-trigger-ico:hover{
+      border-top: 6px solid #f8f8f8;
+    }
+    .ms-sel-ctn:hover{
+      color:#555555;
+    }
+    .ms-close-btn{
+      color:#555555;
+    }
+    .ms-sel-item{
+      color:#555555;
+    }
+block scripts
+  script(src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js")
+  script(src="../../magicSuggest/js/magicsuggest.js")
+  script(src="/classification/classification.js")
+  
+  script.
+block content
+  div.container
+    div.row
+      div.navbar.navbar-inverse.navbar-fixed-top(role="navigation" style="border:0px;")
+        div.container
+          //- div.navbar-header
+            //- button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='#navbar', aria-expanded='false', aria-controls='navbar')
+            //-  span.sr-only Toggle navigation
+            //-  span.icon-bar
+            //-  span.icon-bar
+            //-  span.icon-bar
+            //- div.row
+            //-   div.col-md-12
+          div.row
+            div.col-lg-11.col-md-11.col-sm-10.col-xs-9
+              div.form-group#searchForm(style="")
+                div.ms-ctn.form-control.ms-ctn-focus#ms-scrabble(style="background:transparent; border:0px; border-bottom:1px solid #f8f8f8;")
+                  span.ms-helper(style="display: none;")
+                  div.ms-sel-ctn
+                    input(type="text" class="" placeholder="국가고시, 자격증, 편입, 취업 어떤것이든 검색해 보세요." style="width: 100%; background:transparent;")
+                    div(style="display: none;")
+                  div.ms-trigger(style="border:0px;")
+                    div.ms-trigger-ico
+            //- a.navbar-brand(href="#") SELECT
+            div.col-lg-1.col-md-1.col-sm-2.col-xs-3
+              //- div.navbar-collapse.collapse#navbar
+              form#goNext(role="form" method="post" action="/newsFeed" style="display:none;")
+              ul.nav.navbar-nav.navbar-right
+                li
+                  a#next(style="" type="submit") Next
+    div.row#contents
+      div.thumbnail.tile.tile-large.tile-orange(style="margin-bottom:0px; cursor:pointrer;")
+        a.fa-links(href="#")
+          h1 RSS
+          i.fa.fa-3x.fa-rss-square
+      -for(var i=0; i<6; i++){
+        div.thumbnail.tile.tile-large.tile-green(style="margin-bottom:0px; cursor:pointrer;")
+          a.fa-links(href="#")
+            h1 Home
+            i.fa.fa-3x.fa-rss-square
+      -}
+      div#more
+      div#loader(style="padding-bottom:0px;")
+        img(src="../../images/ajax-loader.gif")

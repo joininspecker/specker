@@ -1,0 +1,106 @@
+extends ../layout
+
+block css
+  link(rel="stylesheet" type="text/css" href="../../loginForm/css/colors.css")
+  link(rel="stylesheet" type="text/css" href="../../loginForm/css/foundation.min.css")
+  link(rel="stylesheet" type="text/css" href="../../loginForm/css/main.css")
+  link(rel="stylesheet" type="text/css" href="../../paper-draw-panel/css/drawer.css")
+  link(rel="stylesheet" type="text/css" href="../../paper-draw-panel/css/sandbox.css")
+  link(rel="stylesheet" type="text/css" href="newsfeed/newsfeed.css")
+  
+  style.
+    .col-lg-10{
+      border-right:1px solid #f8f8f8;
+    }
+      
+    
+    
+block scripts
+  script(src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js")
+  script(type="text/javascript" src="newsfeed/newsfeed.js")
+  script(type="text/javascript" src="../../iScroll/js/iScroll.js")
+  script(type="text/javascript" src="../../paper-draw-panel/js/drawer.js")
+  script(type="text/javascript" src="/socket.io/socket.io.js")
+  //- script(type="text/javascript" src="../../RGInfiniteScroll/js/RGInfiniteScroll.js")
+  //- script(type="text/javascript" src="../../infiniteScroll/js/jquery.infiniteScroll.js")
+  //- script(type="text/javascript" src="../../infiniteScroll/js/debug.js")
+  //- script(type="text/javascript" src="../../infiniteScroll/js/manual-trigger.js")
+  
+  script.
+    $(document).ready(function(){
+      $('.drawer').drawer({
+      });
+      var socket=io.connect();
+      var messageForm=$('#messageForm');
+      var message=$('#message');
+      var chat=$('#chat');
+      $('#messageForm').submit(function(e){
+        e.preventDefault();
+        socket.emit('send message',$('#message').val());
+        $('#message').val('');
+      })
+      socket.on('new message', function(data){
+        $('#chat').append('<div class="well">'+data.msg+'</div>')
+      });
+    });
+    
+block content
+  div.container
+    div.row
+      div.navbar.navbar-inverse.navbar-fixed-top(role="navigation")
+        div.container
+          div.navbar-header
+            button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='#navbar', aria-expanded='false', aria-controls='navbar')
+             span.sr-only Toggle navigation
+             span.icon-bar
+             span.icon-bar
+             span.icon-bar
+            a.navbar-brand(href="#") specker(LOGO)
+          div.navbar-collapse.collapse#navbar
+            ul.nav.navbar-nav.navbar-right
+              li.active
+                a(href="#") Home
+              li.dropdown
+                a.dropdown-toggle(href="#" data-toggle="dropdown") Menu 
+                  b.caret
+                ul.dropdown-menu
+                  li
+                    a(href="#") Profile
+                  li
+                    a(href="#") Message
+                  li
+                    a(href="#addCard" data-toggle="modal") Upload
+                  li.divider
+                  li
+                    a(href="#") Log out
+  div.container(style="padding-top:50px;")
+    div.row#newsfeed(class="drawer drawer--right drawer-close")
+      div.col-lg-10.col-md-10.col-sm-9.col-xs-9
+        -for(var i=0; i<20; i++){
+          p hello
+        -}
+        button#more moreitem
+        div#loader
+          img(src="../../images/ajax-loader.gif")
+      div.col-lg-2.col-md-2.col-sm-3.col-xs-3
+        -for(var i=0; i<5; i++){
+          button.chatList.drawer-toggle(type="button" style="padding: 5px; overflow:hidden; cursor:pointer;")
+            div(style="float: left;")
+              img(src="assets/images/img1.jpg")
+            div(style="float: left; margin-left: 5px")
+              div(style="font-weight: bold; color: #333; font-size: 10px; line-height: 11px") Nguyen Mathis 
+              div(style="color: #999; font-size: 9px") nguyenmathis @acium.com
+        -}
+          nav.drawer-nav.col-sm-3.col-xs-3(style="padding-top: 60px;")
+            div.row(style="width:95%; padding-left:5%;")
+              div.well
+                h3 Online Users
+                ul.list-group#users
+            div.row(style="width:95%; padding-left:5%;")
+              div.chat#chat
+              form#messageForm
+                div.form-group
+                  label Enter Message
+                  textarea.form-control#message
+                  br
+                  input.btn.btn-primary(type="submit" value="Send Message")

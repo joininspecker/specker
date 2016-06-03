@@ -1,0 +1,111 @@
+extends layout
+
+block content
+  include navbar
+  div.container
+    br
+    br
+    br
+    div.col-sm-offset-2.col-sm-8
+      div.row
+        p.h2 Join
+        p description
+      br
+      div.row
+        div.col-sm-4(style="border:1px solid;background-color:#eff")
+          p.h3 Step 1
+          p primary info
+        div.col-sm-4.disabled(style="border:1px solid;")
+          p.h3 Step 2
+          p additional (Spec)
+        div.col-sm-4.disabled(style="border:1px solid;")
+          p.h3 Step 3
+          p additional info
+      br
+      br
+      form(name="join1" method="post" action="/signUp/step2")
+        div.row
+          div.col-sm-8
+            div.row
+              p.control-label UserName
+            div.row
+              input.form-control(type="text" name="username" placeholder="Username" required)
+            br
+            div.row
+              p.control-label Email
+            div.row
+              input.form-control(type="email" name="email" id="email" placeholder="emailID@example.com" required)
+            div.row
+              div.alert.alert-danger.hidden(role="alert" id="emailCheck") email address already existed.
+            br
+            div.row
+              p.control-label Password
+            div.row
+              input.form-control(type="password" name="password" placeholder="Password" required)
+            br
+            div.row
+              p.control-label Phone
+            div.row
+              input.form-control(type="text" name="phone" id="phone" placeholder="please except for -" required)
+            div.row
+              div.alert.alert-danger.hidden(role="alert" id="phoneCheck") phone number already existed.
+            br
+            hr
+            div.row
+              description
+          div.col-sm-4
+            div.col-sm-offset-2.col-sm-8(style="border:1px solid;height:250px")
+              p description
+          br
+          div.row
+            div.col-sm-offset-4.col-sm-4
+              button.btn.btn-block.btn-success(type="submit") Create an Account
+
+              script.
+                $(document).ready(function(){
+                  var emailCheck=$('#emailCheck');
+                  var phoneCheck=$('#phoneCheck');
+                  var email=$('#email');
+                  var phone=$('#phone');
+                  email.focusout(function(){
+                      var temp={};
+                      temp.emailData=email.val();
+                      if(email.val()){
+                        $.ajax({
+                          type:'POST',
+                          url:'/signUp/emailCheck',
+                          data:temp,
+                          success:function(temp){
+                            if(temp){
+                              emailCheck.removeClass('hidden').addClass('show');
+                            }
+                            else{
+                              emailCheck.addClass('hidden').removeClass('show');
+                            }
+                          }
+
+                        })
+                      }
+                  });
+                  
+                  phone.focusout(function(){
+                      var temp={};
+                      temp.phoneData=phone.val();
+                      if(phone.val()){
+                        $.ajax({
+                          type:'POST',
+                          url:'/signUp/phoneCheck',
+                          data:temp,
+                          success:function(temp){
+                            if(temp){
+                              phoneCheck.removeClass('hidden').addClass('show');
+                            }
+                            else{
+                              phoneCheck.addClass('hidden').removeClass('show');
+                            }
+                          }
+
+                        })
+                      }
+                  });
+                });

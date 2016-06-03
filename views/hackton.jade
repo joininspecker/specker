@@ -1,0 +1,44 @@
+extends layout
+
+block css
+  
+  style.
+    //- #head{
+    //-   border-top-left-radius:4px;
+    //-   border-top-right-radius:4px;
+    //-   background-color:#c80000;
+    //- }
+    //- .title{
+    //-   color:#ffffff;
+    //-   text-align:center;
+    //- }
+    //- #body{
+    //-   padding-left:20px;
+    //- }
+    //- .pink{
+    //-   background-color:#ffe7b6;
+    //- }
+    //- #box{
+    //-   background-color:#a98a5f;
+    //-   border-radius:3px solid #a98a5f;
+    //- }
+    
+    #body{
+      background: url(../images/app.png) no-repeat center fixed;
+    }
+block scripts
+  
+  script.
+    $(document).ready(function(){
+      
+    });
+
+block content
+  img(src="../images/app.png" style="width:100%; height:100%;")
+  div.row
+    h1(style="font-size: 110px; margin-top: -1170px; color:red; margin-left: 200px;") 5670MB
+    h2(style="margin-left: 670px; margin-top: -96px; font-size: 50px; color:red;") (43%)
+  div.row
+    h1(style="margin-top: -983px; margin-left:600px; font-size: 80px; color:white;") 8970MB
+  div.row
+    h1 *데이터 요금 3650원 절약 효과!

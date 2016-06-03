@@ -1,0 +1,36 @@
+extends layout
+block css
+  style
+    include offcanvas.css
+block content
+  include navbar
+  div.container
+    br
+    br
+    br
+    div.row.row-offcanvas.row-offcanvas-left
+      div#sidebar.col-xs-6.col-sm-3.sidebar-offcanvas
+        div.list-group
+          a.list-group-item.active(href="#") type
+          a.list-group-item(href="#") 1
+          a.list-group-item(href="#") 2
+          a.list-group-item(href="#") 3
+          a.list-group-item(href="#") 4
+          a.list-group-item(href="#") 5
+          a.list-group-item(href="#") 6
+          a.list-group-item(href="#") 7
+      div.col-xs-12.col-sm-9
+        div.row
+          p.pull-left.visible-xs
+            button.btn.btn-primary.btn-xs(data-toggle="offcanvas" type="button") menu
+        br
+        - for(var i=0; i<20; i++)
+          div.row
+            p= 'news'+i
+
+          script.
+            $(document).ready(function () {
+              $('[data-toggle="offcanvas"]').click(function(){
+                $('.row-offcanvas').toggleClass('active')
+              });
+            });

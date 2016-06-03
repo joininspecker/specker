@@ -1,0 +1,43 @@
+extends layout
+
+block content
+  include navbar
+  div.container-fluid
+    div#carousel-example-generic.carousel.slide(data-ride="carousel")
+      ol.carousel-indicators
+        li.active(data-target="#carousel-example-generic" data-slide-to="0")
+        li(data-target="#carousel-example-generic" data-slide-to="1")
+        li(data-target="#carousel-example-generic" data-slide-to="2")
+      div.carousel-inner(role="listbox")
+        div.item.active
+          img(src="..." alt="...")
+          div.carousel-caption
+            p ...
+
+        div.item
+          img(src="..." alt="...")
+          div.carousel-caption
+            p ...
+        p ...
+      a.left.carousel-control(href="#carousel-example-generic" role="button" data-slide="prev")
+        span.glyphicon.glyphicon-chevron-left(aria-hidden="true")
+        span.sr-only Previous
+      a.right.carousel-control(href="#carousel-example-generic" role="button" data-slide="next")
+        span.glyphicon.glyphicon-chevron-right(aria-hidden="true")
+        span.sr-only Next
+
+  div.container
+    br
+    br
+    br
+    div.row
+      div.col.col-sm-4
+        p member
+      div.col.col-sm-4
+        p team
+      div.col.col-sm-4
+        p success
+    div.row
+      p description
+
+  include foot

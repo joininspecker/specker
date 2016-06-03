@@ -1,0 +1,56 @@
+extends layout
+
+block content
+  include navbar
+  div.container
+    br
+    br
+    br
+    div.row
+      p.h2 Join
+      p description
+    br
+    div.row
+      div.col-sm-4(style="border:1px solid")
+        p.h3 Step 1
+        p primary info
+      div.col-sm-4(style="border:1px solid")
+        p.h3 Step 2
+        p additional (Spec)
+      div.col-sm-4(style="border:1px solid")
+        p.h3 Step 3
+        p additional info
+    br
+    form(name="join" method="post" action="/signUpProcess")
+      div.row
+        div.col-sm-8
+          div.row
+            p.control-label UserName
+          div.row
+            input.form-control(type="text" name="username" placeholder="Username" required)
+          br
+          div.row
+            p.control-label Email
+          div.row
+            input.form-control(type="email" name="email" placeholder="emailID@example.com" required)
+          br
+          div.row
+            p.control-label Password
+          div.row
+            input.form-control(type="password" name="password" placeholder="Password" required)
+          br
+          div.row
+            p.control-label Phone
+          div.row
+            input.form-control(type="text" name="phone" placeholder="please except for -" required)
+          br
+          hr
+          div.row
+            description
+        div.col-sm-4
+          div.col-sm-offset-2.col-sm-8(style="border:1px solid;height:250px")
+            p description
+      br
+      div.row
+        div.col-sm-offset-5.col-sm-2
+          button.btn.btn-block(type="submit") Create an Account

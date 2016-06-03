@@ -1,0 +1,61 @@
+extends layout
+block css
+  style
+    include offcanvas.css
+    include board.css
+block content
+  include navbar
+  div.container
+    div.page-header
+      h1 BBS
+    div.panel.panel-default
+      div.panel-heading.hide
+      div.panel-body
+        h4 BBS title
+        div.panel.panel-default
+          div.panel-heading
+            span.label.label-info Author
+            span &nbsp;
+            span.label.label-info Date
+              time(datetime="2016-03-25 11:20") 2016-03-25
+          div.panel-body
+            p bodybody bodybody bodybody bodybody bodybody bodybody bodybody bodybody bodybody bodybody bodybody bodybody bodybody bodybody bodybody bodybody bodybody bodybody
+            p bodybody bodybody bodybody bodybody bodybody bodybody bodybody bodybody bodybody bodybody bodybody bodybody bodybody bodybody bodybody bodybody bodybody bodybody bodybody bodybody
+            p bodybody bodybody bodybody bodybody bodybody bodybody bodybody bodybody bodybody bodybody bodybody bodybody bodybody bodybody
+            p asdfwer asdjklqwowiffjwqoqdjakjfkjknmzcvk qeqeqkwjafjkajkaksdflsdlfalsdfasdfasdfasdfqwieuoiuasdfjzkxcvz
+            p thank you
+        ul.pager
+          li.previous.disabled
+            a(href="#") &larr; Prev
+          li: a(href="#") revise
+          li: a(href="#") delete
+          li: a(href="#") answer
+          li: a(href="#") list
+          li.next
+            a(href="#") Next &rarr;
+
+      table.board-list.table
+        thead
+          tr.header
+            th.text-center.col-sm-2.col-xs-3 Num
+            th.text-left.col-sm-4.col-xs-6 Title
+            th.text-center.col-sm-2.col-xs-3 Author
+            th.text-center.col-sm-2.col-xs-3 Date
+            th.text-center.col-sm-2.col-xs-3 Visit
+        tbody
+          - for(var i=9; i>0; i--)
+              tr(id= 'sec'+i)
+                td.no= i
+                td.title
+                  a(href="#" onclick="title_selected(this)")= i+' title'
+                td.author troll
+                td.date
+                  time(datetime="2016-03-26 10:10") 2016-03-26
+                td.count= i*2-1
+        script.
+          title_selected(id){
+            for(var idx=1; idx<10; idx++){
+              getElementById('sec'+idx).removeClass('selected');
+            }
+            getElementById('sec'+id).addClass('selected');
+          }

@@ -1,0 +1,38 @@
+body {
+padding-top: 50px;
+padding-bottom: 20px;
+font-family: "Apple SD Gothic Neo", NanumGothic, MalgunGothic, Arial, sans-serif !important;
+}
+table.board-list tbody td {
+text-align: center;
+}
+table.board-list tbody td.title {
+text-align: left;
+}
+.text-bold {
+font-weight: bold;
+}
+table.board-list tbody .selected {
+background-color: #e1edf7;
+font-weight: bold;
+}
+table.board-list thead .header {
+background: #fafafa;
+}
+.board-page .selected {
+background-color: #e1edf7;
+font-weight: bold;
+}
+.article .title {
+width: 100%;
+}
+.article .textarea {
+width: 100%;
+height: 100%;
+border-color: #f0f0f0;
+}
+.article .content {
+height: 300px;
+overflow: auto;
+margin-bottom: 10px;
+}

@@ -1,0 +1,116 @@
+//user
+{
+      "nickname":,
+      "name":,
+      "email":,
+      "phone":,
+      "profile":,
+      "gender":,
+      "age":,
+      "password":,
+      "description":,
+      "popular":{
+        "like":,
+        "unlike":
+      },
+
+      "spec":[],
+      "goal":[],
+
+      "address" : {
+         "post" :,
+         "subpost":,
+         "zipcode" : "10075",
+      },
+      "log":[
+        {
+
+        }
+      ],
+      "teams" :[],
+      "rooms":[],
+      "friends":[],
+  }
+
+
+
+
+
+//team
+
+{
+
+  "leader":,
+  "member":[],
+  "goal":,
+  "description":,
+
+
+}
+
+//room
+
+{
+"isteam":,
+"chatroom":,
+"member":[]
+
+}
+
+//msg
+
+{
+  "chatroom":,
+  "from":,
+  "date": new Date (),
+  "message":
+}
+
+//event(calendar)
+
+{
+  "team":,
+  "date":,
+  "event":,
+  "post":,
+  "description":,
+  "member":
+}
+
+
+//housrhold
+
+{
+  "team":,
+  "date":,
+  "from":,
+  "amount":,
+  "description":
+}
+
+
+
+
+//comment
+{
+  "whichboard"
+  "num"
+  "like"
+  "viewers"
+  "user"
+  "date"
+  "content"
+
+}
+
+//reply
+{
+  "comment"
+  "num"
+  "like"
+  "user"
+  "date"
+  "depth"
+  "content"
+
+}

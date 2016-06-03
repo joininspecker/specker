@@ -1,0 +1,54 @@
+extends layout
+
+block content
+  include navbar
+  div.container
+    br
+    br
+    br
+    div.col-sm-offset-2.col-sm-8
+      div.row
+        p.h2 Join
+        p description
+      br
+      div.row
+        div.col-sm-4(style="border:1px solid;")
+          p.h3 Step 1
+          p primary info
+        div.col-sm-4.disabled(style="border:1px solid;")
+          p.h3 Step 2
+          p additional (Spec)
+        div.col-sm-4.disabled(style="border:1px solid;background-color:#eff")
+          p.h3 Step 3
+          p additional info
+      br
+      br
+      form(name="join3" method="post" action="/signUp/success")
+        div.row
+          div.col-sm-8
+            div.row
+              p.control-label Image
+            div.row
+              input.form-control(type="text" name="image" placeholder="Image" )
+            br
+            div.row
+              p.control-label Birth
+            div.row
+              input.form-control(type="date" name="birth" placeholder="Birth" )
+            br
+            div.row
+              p.control-label Description
+            div.row
+              input.form-control(type="text" name="description" placeholder="Description" )
+            br
+            br
+            hr
+            div.row
+              description
+          div.col-sm-4
+            div.col-sm-offset-2.col-sm-8(style="border:1px solid;height:250px")
+              p description
+          br
+        div.row
+          div.col-sm-offset-4.col-sm-4
+            button.btn.btn-block.btn-success(type="submit") Next Step

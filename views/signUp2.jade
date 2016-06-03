@@ -1,0 +1,112 @@
+extends layout
+
+block content
+  include navbar
+  div.container
+    br
+    br
+    br
+    div.col-sm-12
+      div.row
+        p.h2 Join
+        p description
+      br
+      div.row
+        div.col-sm-4(style="border:1px solid;")
+          p.h3 Step 1
+          p primary info
+        div.col-sm-4.disabled(style="border:1px solid;background-color:#eff")
+          p.h3 Step 2
+          p additional (Spec)
+        div.col-sm-4.disabled(style="border:1px solid;")
+          p.h3 Step 3
+          p additional info
+      br
+      br
+      form(name="join2" method="post" action="/signUp/step3")
+        div.row
+          div.col-sm-8
+            div.row
+              label 학력
+              hr
+            div.row.checkbox
+              div.row
+                label.checkbox-inline(style="margin-left:10px")
+                  input(type="checkbox" id="degree1" value="1")
+                  초등학교
+                label.checkbox-inline
+                  input(type="checkbox" id="degree2" value="2")
+                  중학교
+                label.checkbox-inline
+                  input(type="checkbox" id="degree3" value="3")
+                  고등학교
+                label.checkbox-inline
+                  input(type="checkbox" id="degree4" value="4")
+                  대학교(2~3년제)
+                label.checkbox-inline
+                  input(type="checkbox" id="degree5" value="5")
+                  대학교(4년제)
+                label.checkbox-inline
+                  input(type="checkbox" id="degree6" value="6")
+                  대학원(석사)
+                label.checkbox-inline
+                  input(type="checkbox" id="degree7" value="7")
+                  대학원(박사)
+            br
+            br
+            div.row
+              label 전공
+            hr
+            div.row
+              p.alert.alert-dismissible.fade.in.label.label-info(style="display:inline-block;padding-top:3px;padding-bottom:3px") speasdfaqasdfasdfasdfspeasdfaqasdfasdfasdf1
+                a(data-dismiss="alert" aria-label="Close" style="text-decoration:none !important")
+                  span(aria-hidden="true") &times;
+              p.alert.alert-dismissible.fade.in.label.label-info(style="display:inline-block;padding-top:3px;padding-bottom:3px") specasdfasdfasdfaasdfasdf2
+                a(data-dismiss="alert" aria-label="Close" style="text-decoration:none !important")
+                  span(aria-hidden="true") &times;
+              div.alert.alert-dismissible.fade.in.label.label-info(style="display:inline-block;padding-top:3px;padding-bottom:3px") asdf12asdfasdfasdfasdfasdfasdf3
+                a(data-dismiss="alert" aria-label="Close" style="text-decoration:none !important")
+                  span(aria-hidden="true") &times;
+              div.alert.alert-dismissible.fade.in.label.label-info(style="display:inline-block;padding-top:3px;padding-bottom:3px") qqqqqwer
+                a(data-dismiss="alert" aria-label="Close" style="text-decoration:none !important")
+                  span(aria-hidden="true") &times;
+            div.row
+              div.col-sm-4
+                br
+                div.row
+                  p 1차
+                div.row(style="height:150px;overflow-y:scroll;overflow-x:hidden; border:1px solid")
+                  - for(var i=0; i<20; i++)
+                      div.row(style="padding-left:15px")
+                        p= i
+              div.col-sm-4
+                br
+                div.row
+                  p 2차
+                div.row(style="height:150px; overflow-y:scroll;overflow-x:hidden; border:1px solid")
+                  - for(var i=0; i<20; i++)
+                      div.row(style="padding-left:15px")
+                        p= i+'123'
+              div.col-sm-4
+                br
+                div.row
+                  p 3차
+                select.form-control(multiple style="height:150px; overflow-y:scroll;overflow-x:hidden; border:1px solid")
+                  - for(var i=0; i<20; i++)
+                      option
+                        p= i+'qwe'
+
+            div.row
+              span.label.label-info spec1
+            br
+            br
+            hr
+            div.row
+              description
+          div.col-sm-4
+            div.col-sm-offset-2.col-sm-8(style="border:1px solid;height:250px")
+              p description
+        br
+        div.row
+          div.col-sm-offset-4.col-sm-4
+            button.btn.btn-block.btn-success(type="submit") Next Step

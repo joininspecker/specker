@@ -1,0 +1,44 @@
+extends layout
+
+block content
+  include navbar
+  div.container
+    br
+    br
+    br
+    div.col-sm-offset-4.col-sm-4
+      div.row
+        p img
+      br
+      br
+      div.row
+        p.h2 please sign in
+      br
+      -if(verification=="NO"){
+        -var views=1;
+        div.row(class="#{verification}")
+        div.row
+          div.alert.alert-danger(role="alert") Incorrect username or password.
+      -}
+      form(method="post" name="signIn_form" action="/signInProcess")
+        div.row
+          p.control-label E-mail address
+        div.row
+          input.form-control(type="text" name="email" placeholder="EmailID@example.com")
+        br
+        div.row
+          p.control-label Password
+        div.row
+          input.form-control(type="password" name="password" placeholder="Password")
+        br
+        div.row
+          button.btn.btn-block(type="submit") Sign In
+        br
+        br
+        div.row
+          move sign up
+          
+    script.
+      $(document).ready(function(){
+        var hihi="#{verification}";
+      });
