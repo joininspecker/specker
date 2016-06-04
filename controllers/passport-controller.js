@@ -18,10 +18,10 @@ module.exports = function (passport) {
   function(username, password, done) {
     User.findOne({ email: username }, function(err, user) {
       if (err) { return done(err); }
-      if (!user.validPassword(password)) {
+      if (!user) {
         return done(null, false, { message: 'Incorrect username.' });
       }
-      if (user.password!=password) {
+      if (!user.validPassword(password)) {
         return done(null, false, { message: 'Incorrect password.' });
       }
       return done(null, user);

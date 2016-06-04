@@ -26,10 +26,57 @@ exports.classification = function(req, res){
       if(datas.goal.length<=3)
         res.render('classification/classification');
       else
-        res.render('newfeed/newfeed');
+        res.render('newsFeed/newsFeed');
   });
 
 };
+
+exports.enrollClassification = function(req, res){
+  console.log(req.body);
+  console.log(req.body.tagData);
+  var key = mongoose.Types.ObjectId(req.session.passport.user);
+  User.findOne({'_id':key},function(err, userData){
+    if(err)
+      throw err;
+    if(!userData)
+      res.send(false);
+    Spec.find({'name':{$in:req.body.tagData}, 'depth':"C"},function(err, specData){
+      console.log(specData);
+      for(var i=0; i<specData.length; i++){
+        userData.goal.push(specData[i]._id);
+      }
+      userData.save(function(err){
+        if(err)
+          throw err;
+        res.send(true);
+      });
+
+    });
+  });
+}
+//     for(var i=0; i<req.body.tagData.length; i++){
+//       Spec.findOne({name:req.body.tagData[i], depth:"C"},function(err, specData){
+//         console.log("good!!!!!!!!! %s", specData);
+//         if(err)
+//           throw err;
+//         userData.goal.push(specData._id);
+//         console.log(i);
+//         console.log(req.body.tagData.length-1);
+//         if(i==(req.body.tagData.length-1)){
+//           console.log("here??");
+//           userData.save(function(err){
+//             if(err)
+//               throw err;
+//
+//             res.redirect('/newsFeed');
+//           });
+//         }
+//       });
+//     }
+//   });
+// };
+
+
 
 /* 디비 입맞에 맞게 바꿀떄 사용
 

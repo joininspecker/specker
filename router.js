@@ -42,17 +42,48 @@ exports.router=function(app,io,passport){
   app.route('/signIn/confirm')
     .post(user.signInConfirm);
 
-  app.post('/signIn',passport.authenticate('local', {
-      successRedirect: '/classification',
-      failureRedirect: '/',
-      failureFlash: true
-    })
-  );
+  // app.post('/signIn',passport.authenticate('local', {
+  //     successRedirect: '/classification',
+  //     failureRedirect: '/',
+  //     failureFlash: true
+  //   })
+  // );
+  app.post('/signIn',function(req, res,next){
+    passport.authenticate('local', function(err, user, info) {
+      if (err) { return next(err); }
+      if (!user) { return res.redirect('/'); }
+      req.logIn(user, function(err) {
+        if (err) { return next(err); }
+        if(user.goal.length>=3)
+          return res.redirect('/newsFeed');
+        else
+          return res.redirect('/classification');
+
+      });
+    })(req, res, next);
+  });
+  //signOut
+  app.get('/signOut',user.signOut);
+
+  // app.get('/login', function(req, res, next) {
+  //   passport.authenticate('local', function(err, user, info) {
+  //     if (err) { return next(err); }
+  //     if (!user) { return res.redirect('/login'); }
+  //     req.logIn(user, function(err) {
+  //       if (err) { return next(err); }
+  //       return res.redirect('/users/' + user.username);
+  //     });
+  //   })(req, res, next);
+  // });
+
+
+
   // app.route('/signIn')
   //   .post(user.signIn);
 
   //newsfeed
   app.route('/newsFeed')
+    .get(isLoggedIn,newsFeed.newsFeed)
     .post(newsFeed.newsFeed);
 
   app.route('/getNewsFeed')
@@ -65,6 +96,8 @@ exports.router=function(app,io,passport){
     .get(isLoggedIn,classification.classification)
   app.route('/classification/signUpSearch')
     .post(classification.getClassification);
+  app.route('/classification/enrollClassification')
+    .post(classification.enrollClassification);
 
 };
 

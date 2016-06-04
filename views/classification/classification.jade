@@ -68,6 +68,7 @@ block scripts
   script(src="/classification/classification.js")
   
   script.
+    
 block content
   div.container
     div.row
@@ -98,17 +99,17 @@ block content
               ul.nav.navbar-nav.navbar-right
                 li
                   a#next(style="" type="submit") Next
-    div.row#contents
-      div.thumbnail.tile.tile-large.tile-orange(style="margin-bottom:0px; cursor:pointrer;")
-        a.fa-links(href="#")
-          h1 RSS
-          i.fa.fa-3x.fa-rss-square
-      -for(var i=0; i<6; i++){
-        div.thumbnail.tile.tile-large.tile-green(style="margin-bottom:0px; cursor:pointrer;")
-          a.fa-links(href="#")
-            h1 Home
-            i.fa.fa-3x.fa-rss-square
-      -}
-      div#more
-      div#loader(style="padding-bottom:0px;")
-        img(src="../../images/ajax-loader.gif")
+    //- div.row#contents
+    //-   div.thumbnail.tile.tile-large.tile-orange(style="margin-bottom:0px; cursor:pointrer;")
+    //-     a.fa-links(href="#")
+    //-       h1 RSS
+    //-       i.fa.fa-3x.fa-rss-square
+    //-   -for(var i=0; i<6; i++){
+    //-     div.thumbnail.tile.tile-large.tile-green(style="margin-bottom:0px; cursor:pointrer;")
+    //-       a.fa-links(href="#")
+    //-         h1 Home
+    //-         i.fa.fa-3x.fa-rss-square
+    //-   -}
+    //-   div#more
+    //-   div#loader(style="padding-bottom:0px;")
+    //-     img(src="../../images/ajax-loader.gif")

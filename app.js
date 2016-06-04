@@ -12,8 +12,10 @@ var methodOverride = require('method-override');
 var session        = require('express-session');    // 세션 인증을 위한 라이브러리
 var sessionStore   = require('session-file-store')(session);
 var passport = require('passport');
+var flash = require('connect-flash');
 
 
+app.use(flash());
 app.use(express.static(__dirname + '/public'));     // set the static files location /public/img will be /img for users
 app.use(express.static(__dirname + '/views'));     // set the static files location /public/img will be /img for users
 app.use('/signUp', express.static('public'));

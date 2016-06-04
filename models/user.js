@@ -39,8 +39,8 @@ var user= mongoose.Schema({
         name         : String
     }
   },
-  spec:[String],
-  goal:[String],
+  spec:[Schema.Types.ObjectId],
+  goal:[Schema.Types.ObjectId],
 
   address : {
      post :String,

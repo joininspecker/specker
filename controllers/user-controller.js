@@ -105,7 +105,9 @@ exports.signInConfirm = function(req, res){
       throw err;
 
     if(userData){
-      if(userData.password==req.body.password){
+      console.log(userData.password);
+      console.log(userData.validPassword(req.body.password));
+      if(userData.validPassword(req.body.password)){
         res.send({result:isExisted});
       }
       else{
@@ -126,6 +128,10 @@ exports.signIn = function(req, res){
   res.redirect('/classification');
 };
 
+exports.signOut = function(req, res){
+  req.logout();
+  res.redirect('/');
+};
 
 
 
