@@ -1,6 +1,5 @@
 body{
   background-color:#36465d;
-  //color: hsla(0, 0%, 100%, .5);
   color:#eee;
 }
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -120,4 +119,38 @@ p{
 ul.dropdown-menu.notifications{
   margin-top:-10px;
   border-radius: 10px;
+}
+
+#sideBarChatHeader{
+  /*position:relative;*/
+  top:0;
+  height:10%;
+  background-color: #36465d;
+}
+#sideBarChatContent{
+  position:relative;
+  height:80%;
+  overflow-y:scroll;
+
+  -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: none;
+
+}
+#sideBarChatFooter{
+  position:absolute;
+  bottom:0;
+  height:10%;
+  width:100%;
+}
+.chatLabel{
+  color:black;
+}
+.sideBarChatTitle{
+  text-align:center;
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  color:#f8f8f8;
 }

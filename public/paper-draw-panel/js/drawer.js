@@ -1,177 +1,76 @@
-/*!
- * jquery-drawer v3.2.0
- * Flexible drawer menu using jQuery, iScroll and CSS.
- * http://git.blivesta.com/drawer
- * License : MIT
- * Author : blivesta <design@blivesta.com> (http://blivesta.com/)
- */
-
-;(function umd(factory) {
-  'use strict';
-  if (typeof define === 'function' && define.amd) {
-    define(['jquery'], factory);
-  } else if (typeof exports === 'object') {
-    module.exports = factory(require('jquery'));
-  } else {
-    factory(jQuery);
-  }
-}(function Drawer($) {
-  'use strict';
-  var namespace = 'drawer';
-  var touches = typeof document.ontouchstart != 'undefined';
-  var __ = {
-    init: function init(options) {
-      options = $.extend({
-        iscroll: {
-          mouseWheel: true,
-          preventDefault: false
+/*! simpler-sidebar v1.4.11 (https://github.com/dcdeiv/simpler-sidebar#readme)
+** Copyright (c) 2015 - 2016 Davide Di Criscito
+** Dual licensed under MIT and GPL-2.0
+*/
+!function(a) {
+    a.fn.simplerSidebar = function(b) {
+        var c = a.extend(!0, a.fn.simplerSidebar.settings, b);
+        return this.each(function() {
+            var b, d, e, f, g, h, i = c.attr, j = a(this), k = a(c.opener), l = c.sidebar.closingLinks, m = c.animation.duration, n = c.sidebar.width, o = c.sidebar.gap, p = n + o, q = a(window).width(), r = {}, s = {}, t = function() {
+                a("body, html").css("overflow", "hidden")
+            }, u = function() {
+                a("body, html").css("overflow", "auto")
+            }, v = {
+                duration: m,
+                easing: c.animation.easing,
+                complete: t
+            }, w = {
+                duration: m,
+                easing: c.animation.easing,
+                complete: u
+            }, x = function() {
+                j.animate(r, v).attr("data-" + i, "active"), A.fadeIn(m)
+            }, y = function() {
+                j.animate(s, w).attr("data-" + i, "disabled"), A.fadeOut(m)
+            }, z = function() {
+                var a = j.attr("data-" + i), c = j.width();
+                s[b] =- c, "active" === a && y()
+            }, A = a("<div>").attr("data-" + i, "mask");
+            - 1 !== [void 0, "right"].indexOf(c.sidebar.align) ? b = "right" : "left" === c.sidebar.align ? b = "left" : console.log('ERR sidebar.align: you typed "' + c.sidebar.align + '". You should choose between"right" or "left".'), d = p > q ? q - o : n, e = {
+                position: "fixed",
+                top: c.top,
+                bottom: 0,
+                width: d
+            }, e[b] =- d, r[b] = 0, f = a.extend(!0, e, c.sidebar.css), j.css(f).attr("data-" + i, "disabled"), g = {
+                position: "fixed",
+                top: c.top,
+                right: 0,
+                bottom: 0,
+                left: 0,
+                zIndex: c.sidebar.css.zIndex - 1,
+                display: "none"
+            }, h = a.extend(!0, g, c.mask.css), - 1 !== [!0, "true", !1, "false"].indexOf(c.mask.display)?-1 !== [!0, "true"].indexOf(c.mask.display) && A.appendTo("body").css(h) : console.log('ERR mask.display: you typed "' + c.mask.display + '". You should choose between true or false.'), k.click(function() {
+                var a = j.attr("data-" + i), c = j.width();
+                s[b] =- c, "disabled" === a ? x() : "active" === a && y()
+            }), A.click(z), j.on("click", l, z), a(window).resize(function() {
+                var c, d, e = j.attr("data-" + i), f = a(window).width();
+                c = p > f ? f - o : n, d = {
+                    width: c
+                }, "disabled" === e ? (d[b] =- c, j.css(d)) : "active" === e && j.css(d)
+            })
+        })
+    }, a.fn.simplerSidebar.settings = {
+        attr: "simplersidebar",
+        top: 0,
+        animation: {
+            duration: 500,
+            easing: "swing"
         },
-        showOverlay: true
-      }, options);
-
-      __.settings = {
-        state: false,
-        events: {
-          opened: 'drawer.opened',
-          closed: 'drawer.closed'
+        sidebar: {
+            width: 300,
+            gap: 64,
+            closingLinks: "a",
+            css: {
+                zIndex: 3e3
+            }
         },
-        dropdownEvents: {
-          opened: 'shown.bs.dropdown',
-          closed: 'hidden.bs.dropdown'
+        mask: {
+            display: !0,
+            css: {
+                backgroundColor: "black",
+                opacity: .5,
+                filter: "Alpha(opacity=50)"
+            }
         }
-      };
-
-      __.settings.class = $.extend({
-        nav: 'drawer-nav',
-        toggle: 'drawer-toggle',
-        overlay: 'drawer-overlay',
-        open: 'drawer-open',
-        close: 'drawer-close',
-        dropdown: 'drawer-dropdown'
-      }, options.class);
-
-      return this.each(function instantiateDrawer() {
-        var _this = this;
-        var $this = $(this);
-        var data = $this.data(namespace);
-
-        if (!data) {
-          options = $.extend({}, options);
-          $this.data(namespace, { options: options });
-
-          __.refresh.call(_this);
-
-          if (options.showOverlay) {
-            __.addOverlay.call(_this);
-          }
-
-          $('.' + __.settings.class.toggle).on('click.' + namespace, function toggle() {
-            __.toggle.call(_this);
-            return _this.iScroll.refresh();
-          });
-
-          $(window).resize(function close() {
-            __.close.call(_this);
-            return _this.iScroll.refresh();
-          });
-
-          $('.' + __.settings.class.dropdown)
-            .on(__.settings.dropdownEvents.opened + ' ' + __.settings.dropdownEvents.closed, function onOpenedOrClosed() {
-              return _this.iScroll.refresh();
-            });
-        }
-
-      }); // end each
-    },
-
-    refresh: function refresh() {
-      this.iScroll = new IScroll(
-        '.' + __.settings.class.nav,
-        $(this).data(namespace).options.iscroll
-      );
-    },
-
-    addOverlay: function addOverlay() {
-      var _this = this;
-      var $this = $(this);
-      var $overlay = $('<div>').addClass(__.settings.class.overlay + ' ' + __.settings.class.toggle);
-
-      return $this.append($overlay);
-    },
-
-    toggle: function toggle() {
-      var _this = this;
-
-      if (__.settings.state) {
-        return __.close.call(_this);
-      } else {
-        return __.open.call(_this);
-      }
-    },
-
-    open: function open() {
-      var $this = $(this);
-
-      if (touches) {
-        $this.on('touchmove.' + namespace, function disableTouch(event) {
-          event.preventDefault();
-        });
-      }
-
-      return $this
-        .removeClass(__.settings.class.close)
-        .addClass(__.settings.class.open)
-        .css({ 'overflow': 'hidden' })
-        .drawerCallback(function triggerOpenedListeners() {
-          __.settings.state = true;
-          $this.trigger(__.settings.events.opened);
-        });
-    },
-
-    close: function close() {
-      var $this = $(this);
-
-      if (touches) $this.off('touchmove.' + namespace);
-
-      return $this
-        .removeClass(__.settings.class.open)
-        .addClass(__.settings.class.close)
-        .css({ 'overflow': 'auto' })
-        .drawerCallback(function triggerClosedListeners() {
-          __.settings.state = false;
-          $this.trigger(__.settings.events.closed);
-        });
-    },
-
-    destroy: function destroy() {
-      return this.each(function destroyEach() {
-        var $this = $(this);
-        $(window).off('.' + namespace);
-        $this.removeData(namespace);
-      });
     }
-
-  };
-
-  $.fn.drawerCallback = function drawerCallback(callback) {
-    var end = 'transitionend webkitTransitionEnd';
-    return this.each(function setAnimationEndHandler() {
-      var $this = $(this);
-      $this.on(end, function invokeCallbackOnAnimationEnd() {
-        $this.off(end);
-        return callback.call(this);
-      });
-    });
-  };
-
-  $.fn.drawer = function drawer(method) {
-    if (__[method]) {
-      return __[method].apply(this, Array.prototype.slice.call(arguments, 1));
-    } else if (typeof method === 'object' || !method) {
-      return __.init.apply(this, arguments);
-    } else {
-      $.error('Method ' + method + ' does not exist on jQuery.' + namespace);
-    }
-  };
-
-}));
+}(jQuery);

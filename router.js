@@ -3,24 +3,9 @@ var newsFeed = require('./controllers/newsFeed-controller.js');
 var classification = require('./controllers/classification-controller.js');
 var chat = require('./controllers/chat-controller.js');
 var User = require('./models/user.js');
-connections=[];
 exports.router=function(app,io,passport){
   //chat
-  io.sockets.on('connection',function(socket){
-    connections.push(socket);
-    console.log("hello");
-    console.log('connected: %s sockets connected', connections.length);
-    //disconnect
-    connections.splice(connections.indexOf(socket),1);
-    console.log('disconnected : %s sockets connected', connections.length);
-    socket.on('send message',function(data){
-      io.sockets.emit("new message",{msg:data});
-    });
-  });
-  app.route('/chatConnection')
-    .post(chat.chatConnection(io));
-  app.route('/sideBarChat')
-    .post(chat.sideBarChat(io));
+  io.sockets.on('connection',chat.sideBarChat);
 
   app.route('/')
     .get(function(req, res, next) {

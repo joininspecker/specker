@@ -17,5 +17,5 @@ exports.newsFeed = function(req, res){
       res.render('newsFeed/newsFeed');
     else
       res.redirect('/classification');
-  })
+  });
 };

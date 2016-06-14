@@ -1,11 +1,11 @@
 extends ../layout
 
 block css
-  link(rel="stylesheet" type="text/css" href="../../loginForm/css/colors.css")
+  //- link(rel="stylesheet" type="text/css" href="../../loginForm/css/colors.css")
   link(rel="stylesheet" type="text/css" href="../../loginForm/css/foundation.min.css")
-  link(rel="stylesheet" type="text/css" href="../../loginForm/css/main.css")
-  link(rel="stylesheet" type="text/css" href="../../paper-draw-panel/css/drawer.css")
-  link(rel="stylesheet" type="text/css" href="../../paper-draw-panel/css/sandbox.css")
+  //- link(rel="stylesheet" type="text/css" href="../../loginForm/css/main.css")
+  //- link(rel="stylesheet" type="text/css" href="../../paper-draw-panel/css/drawer.css")
+  //- link(rel="stylesheet" type="text/css" href="../../paper-draw-panel/css/sandbox.css")
   link(rel="stylesheet" type="text/css" href="/newsFeed/newsFeed.css")
   
   style.
@@ -19,8 +19,10 @@ block scripts
   script(src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js")
   script(type="text/javascript" src="/newsFeed/newsFeed.js")
   script(type="text/javascript" src="../../iScroll/js/iScroll.js")
+  //- script(type="text/javascript" src="../../iScroll/js/iScroll5.js")
   script(type="text/javascript" src="../../paper-draw-panel/js/drawer.js")
   script(type="text/javascript" src="/socket.io/socket.io.js")
+  //- script(type='text/javascript' src='/js/jquery.mousewheel.min.js')
   //- script(type="text/javascript" src="../../RGInfiniteScroll/js/RGInfiniteScroll.js")
   //- script(type="text/javascript" src="../../infiniteScroll/js/jquery.infiniteScroll.js")
   //- script(type="text/javascript" src="../../infiniteScroll/js/debug.js")
@@ -28,8 +30,20 @@ block scripts
   
   script.
     $(document).ready(function(){
-      $('.drawer').drawer({
-      });
+      $( "#main-sidebar" ).simplerSidebar( {
+      		top: 60,
+      		opener: "#toggle-sidebar",
+      		animation: {
+            duration: 500,
+      			easing: "easeOutQuint"
+      		},
+      		sidebar: {
+      			align: "right",
+             width: 400,
+      			closingLinks: ".close-sb"
+      		}
+      	});
+      //- var iscroll = new iScroll("wrapper", {hScroll:false});
       var socket=io.connect();
       var messageForm=$('#messageForm');
       var message=$('#message');
@@ -47,8 +61,8 @@ block scripts
 block content
   include ../navbar.jade
   div.container(style="padding-top:60px;")
-    div.row#newsfeed(class="drawer drawer--right drawer-close")
-      div.col-lg-10.col-md-10.col-sm-9.col-xs-9(style="margin-top:10px;")
+    div.row#main-content
+      div.col-lg-10.col-md-10.col-sm-9.col-xs-9#content(style="margin-top:10px;")
         -for(var i=0; i<20; i++){
           p hello
         -}
@@ -57,23 +71,34 @@ block content
           img(src="../../images/ajax-loader.gif")
       div.col-lg-2.col-md-2.col-sm-3.col-xs-3(style="margin-top:10px;")
         -for(var i=0; i<5; i++){
-          button.chatList.drawer-toggle(type="button" style="padding: 5px; overflow:hidden; cursor:pointer;")
+          button(type="button" style="padding: 5px; overflow:hidden; cursor:pointer;")
             div(style="float: left;")
               img(src="assets/images/img1.jpg")
             div(style="float: left; margin-left: 5px")
               div(style="font-weight: bold; color: #333; font-size: 10px; line-height: 11px") Nguyen Mathis 
               div(style="color: #999; font-size: 9px") nguyenmathis @acium.com
         -}
-          nav.drawer-nav.col-sm-3.col-xs-3(style="padding-top: 60px;")
-            div.row(style="width:95%; padding-left:5%;")
-              div.well
-                h3 Online Users
-                ul.list-group#users
-            div.row(style="width:95%; padding-left:5%;")
-              div.chat#chat
-              form#messageForm
-                div.form-group
-                  label Enter Message
-                  textarea.form-control#message
-                  br
-                  input.btn.btn-primary(type="submit" value="Send Message")
+    nav#main-sidebar
+      div.row#sideBarChatHeader
+        h4.sideBarChatTitle 목록
+      div.row#sideBarChatContent(style="z-index:3000; overflow:auto; background-color:#f8f8f8;")
+        -for(var i=0; i<20; i++){
+          p(style="color:black;") hello
+        -}
+      div.row#sideBarChatFooter(style="z-index:3000; background-color:#f8f8f8;")
+        div.col-lg-3.col-md-3.col-sm-3.col-xs-3(style="text-align:center;")
+          a(style="text-decoration:none; color:#36465d;")
+            i.fa.fa-users.fa-3x(aria-hidden="true")
+            p.chatLabel 목록
+        div.col-lg-3.col-md-3.col-sm-3.col-xs-3(style="text-align:center;")
+          a(style="text-decoration:none; color:#36465d;")
+            i.fa.fa-comment-o.fa-3x(aria-hidden="true")
+            p.chatLabel 채팅
+        div.col-lg-3.col-md-3.col-sm-3.col-xs-3(style="text-align:center;")
+          a(style="text-decoration:none; color:#36465d;")
+            i.fa.fa-calendar.fa-3x(aria-hidden="true")
+            p.chatLabel 일정
+        div.col-lg-3.col-md-3.col-sm-3.col-xs-3(style="text-align:center;")
+          a(style="text-decoration:none; color:#36465d;")
+            i.fa.fa-cog.fa-3x(aria-hidden="true")
+            p.chatLabel 설정
